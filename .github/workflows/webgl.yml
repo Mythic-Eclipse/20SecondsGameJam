@@ -1,3 +1,4 @@
+
 name: Build and Deploy WebGL
 
 on:
@@ -21,14 +22,33 @@ jobs:
         with:
           fetch-depth: 0
           lfs: true
-          ref: dev
 
-      # Cache Unity Library folder
-      - uses: actions/cache@v3
+      # Debug: Check project structure
+      - name: Check project structure
+        run: |
+          echo "Repository contents:"
+          ls -la
+          echo "Looking for Unity project..."
+          find . -name "ProjectVersion.txt" -type f
+
+      # Free up disk space
+      - name: Free Disk Space (Ubuntu)
+        uses: jlumbroso/free-disk-space@main
         with:
-          path: Library
-          key: Library-WebGL
-          restore-keys: Library-
+          tool-cache: false
+          android: true
+          dotnet: true
+          haskell: true
+          large-packages: true
+          docker-images: true
+          swap-storage: true
+
+      # Cache Unity Library folder (commented out if disk space is an issue)
+      # - uses: actions/cache@v3
+      #   with:
+      #     path: Library
+      #     key: Library-WebGL
+      #     restore-keys: Library-
 
       # Build WebGL
       - uses: game-ci/unity-builder@v4
