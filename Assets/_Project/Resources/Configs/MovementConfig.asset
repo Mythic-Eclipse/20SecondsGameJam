@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da7fc070c820a7a4ebf7eed555c56255, type: 3}
+  m_Name: MovementConfig
+  m_EditorClassIdentifier: 
+  DebugMode: 1
+  GroundLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  WallLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  SlidingLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  CollisionOffset: 0.01
+  WallCollisionDistance: 0.01
+  Gravity: 25
+  DragResetStep: 0.8
+  MovementSpeed: 6
+  GroundAcceleration: 75
+  GroundDeceleration: 60
+  KeepRunningDistance: 3
+  JumpForce: 10.5
+  InJumpAcceleration: 45
+  InJumpDeceleration: 45
+  WallJumpForce: 15
+  WallJumpDrag: 0.2
+  MaxFallSpeed: 10
+  InFallAcceleration: 45
+  InFallDeceleration: 45
+  GrabAngleDuration: 0.3
+  GrabCooldown: 0.5
+  WallClimbUpForce: 10
+  WallClimbUpTime: 0.5
+  WallClimbSideForce: 5
+  MaxSlopeSlidingSpeed: 7
+  SlopeSlidingJumpDrag: 0.2
+  SlopeSlidingFallDrag: 0.1
+  SlidingWallSpeed: 4
+  SlidingWallDeceleration: 0.5
+  AirBounceForce: 9
+  AirBounceChargeTime: 0.5
+  AirBounceGroundDistance: 5
+  AirWaveSpeed: 10
+  AirWaveLifeTime: 0.5
+  AirWaveCooldown: 1
+  AirWaveImpulseForce: 20
+  AirWaveDrag: 0.2
+  AirWaveMinCharge: 0.5
+  AirWaveMaxCharge: 1
+  AirWaveLevitationDuration: 2
+  MaxSlidingSpeed: 10
+  SlidingDeceleration: 0.5
+  MinSlidingSpeed: 4
+  SlidingAcceleration: 1
