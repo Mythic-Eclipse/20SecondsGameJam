@@ -1,36 +1,58 @@
-name: Build WebGL
+name: Build and Deploy WebGL
 
 on:
   push:
     branches:
-      - main
+      - dev
+  pull_request:
+    branches:
+      - dev
+  workflow_dispatch:
 
 jobs:
-  build:
-    name: WebGL Build
+  buildWebGL:
+    name: Build WebGL
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
+      # Checkout repository
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          lfs: true
+          ref: dev
 
-      - name: Cache Unity Library
-        uses: actions/cache@v4
+      # Cache Unity Library folder
+      - uses: actions/cache@v3
         with:
           path: Library
-          key: Library-${{ runner.os }}-${{ hashFiles('**/ProjectSettings/ProjectVersion.txt') }}
-          restore-keys: |
-            Library-
+          key: Library-WebGL
+          restore-keys: Library-
 
-      - name: Build WebGL
-        uses: game-ci/unity-builder@v4
+      # Build WebGL
+      - uses: game-ci/unity-builder@v4
         env:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
         with:
+          unityVersion: auto
+          projectPath: Unity
           targetPlatform: WebGL
+          buildName: WebGL
 
-      - name: Upload build to GitHub Pages branch
-        uses: peaceiris/actions-gh-pages@v4
+      # Upload build artifact
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Build-WebGL
+          path: build/WebGL
+
+      # Deploy to GitHub Pages (only on push to dev)
+      - name: Deploy to GitHub Pages
+        if: github.event_name == 'push' && github.ref == 'refs/heads/dev'
+        uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: build/WebGL
-          publish_branch: build
+          publish_dir: ./build/WebGL/WebGL
+          destination_dir: builds/latest
