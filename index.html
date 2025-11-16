@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Test Build</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+            background: #1a1a1a;
+            color: #fff;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        .build-link {
+            display: inline-block;
+            padding: 15px 30px;
+            background: #0066cc;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 18px;
+            margin: 20px 0;
+        }
+        .build-link:hover {
+            background: #0052a3;
+        }
+        iframe {
+            width: 100%;
+            height: 80vh;
+            border: 2px solid #333;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎮 Latest Build - Dev Branch</h1>
+        <p>Последний билд из ветки dev</p>
+        <a href="builds/latest/index.html" class="build-link" target="_blank">
+            Открыть в полном окне
+        </a>
+        
+        <iframe src="builds/latest/index.html" allowfullscreen></iframe>
+    </div>
+</body>
+</html>
